@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
 
@@ -18,3 +19,5 @@ urlpatterns = patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v1/', include('api.urls')),
 )
+
+urlpatterns += staticfiles_urlpatterns()

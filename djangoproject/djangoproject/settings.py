@@ -1,5 +1,7 @@
 # Django settings for djangoproject project.
 
+import os
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
@@ -199,6 +201,21 @@ AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = 'team-josh-devcup-2013'
 AWS_LOCATION = 'ap-southeast-1'
+
+
+
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+USE_STATIC = True
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, 'static'),
+)
+
+STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR, 'templates'),
+)
 
 try:
     from local_settings import *
