@@ -28,3 +28,17 @@ class UserRegistrationAPIView(generics.CreateAPIView):
 class CreateOfferAPIView(generics.CreateAPIView):
     serializer_class = OfferSerializer
     permission_classes = (IsAuthenticated,)
+    
+    def post(self, request, *args, **kwargs):
+        data = request.DATA.copy()
+        data['owner'] = request.user.id
+        serializer = self.get_serializer(data=data, files=request.FILES)
+        if serializer.is_valid():
+            self.pre_save(serializer.object)
+            self.object = serializer.save(force_insert=True)
+            self.post_save(self.object, created=True)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED,
+                            headers=headers)
+        else:
+            return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
