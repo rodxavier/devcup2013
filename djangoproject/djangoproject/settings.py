@@ -1,5 +1,10 @@
 # Django settings for djangoproject project.
 
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+USE_STATIC = True
+
+PROJECT_DIR = os.path.join(PROJECT_DIR, '..')
+
 import os
 
 DEBUG = False
@@ -208,12 +213,6 @@ AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = 'team-josh-devcup-2013'
 AWS_LOCATION = 'ap-southeast-1'
 
-
-
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
-USE_STATIC = True
-
-PROJECT_DIR = os.path.join(PROJECT_DIR, '..')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
