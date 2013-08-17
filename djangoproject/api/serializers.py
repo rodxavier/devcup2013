@@ -32,3 +32,24 @@ class OfferSerializer(serializers.ModelSerializer):
             instance.is_accepted = attrs.get('is_accepted', instance.is_accepted)
             instance.is_cancelled = attrs.get('is_cancelled', instance.is_cancelled)
         return Offer(**attrs)
+        
+class DealSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField('get_image_url')
+ 
+    class Meta:
+        model = Deal
+        fields = ('id', 'owner', 'title', 'description', 'price', 'image')
+        
+    def restore_object(self, attrs, instance=None):
+        if instance:
+            instance.owner = attrs.get('owner', instance.owner)
+            instance.title = attrs.get('title', instance.title)
+            instance.price = attrs.get('price', instance.price)
+            instance.description = attrs.get('description', instance.description)
+            instance.is_available = attrs.get('is_available', instance.is_available)
+            instance.is_sold = attrs.get('is_sold', instance.is_sold)
+            instance.is_open = attrs.get('is_open', instance.is_open)
+        return Deal(**attrs)
+        
+    def get_image_url(self, obj):
+        return obj.image.url

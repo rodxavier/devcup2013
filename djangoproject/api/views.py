@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from accounts.models import User
-from api.serializers import UserSerializer, OfferSerializer
+from api.serializers import UserSerializer, OfferSerializer, DealSerializer
 from marketplace.models import Deal, Offer
 
 class UserRegistrationAPIView(generics.CreateAPIView):
@@ -42,3 +42,22 @@ class CreateOfferAPIView(generics.CreateAPIView):
                             headers=headers)
         else:
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
+            
+class CreateDealAPIView(generics.CreateAPIView):
+    serializer_class =  DealSerializer
+    permission_classes = (IsAuthenticated,)
+    
+    def post(self, request, *args, **kwargs):
+        data = request.DATA.copy()
+        data['owner'] = request.user.id
+        serializer = self.get_serializer(data=data, files=request.FILES)
+        if serializer.is_valid():
+            self.pre_save(serializer.object)
+            self.object = serializer.save(force_insert=True)
+            self.post_save(self.object, created=True)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED,
+                            headers=headers)
+        else:
+            return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
+    

@@ -214,8 +214,6 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 USE_STATIC = True
 
 PROJECT_DIR = os.path.join(PROJECT_DIR, '..')
-print PROJECT_DIR
-
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
