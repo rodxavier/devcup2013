@@ -55,7 +55,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = 'http://team-josh-devcup-2013.s3.amazonaws.com/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -125,16 +125,17 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 
+    # Project apps
+    'accounts',
+    'api',
+    'marketplace',
+
     # 3rd-party apps
     'south',
     'rest_framework',
     'rest_framework.authtoken',
     'allauth',
     'allauth.account',
-    
-    # Project apps
-    'accounts',
-    'api',
 
 )
 
@@ -192,6 +193,12 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.RegistrationForm'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+AWS_STORAGE_BUCKET_NAME = 'team-josh-devcup-2013'
+AWS_LOCATION = 'ap-southeast-1'
 
 try:
     from local_settings import *
