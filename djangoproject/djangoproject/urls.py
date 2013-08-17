@@ -3,9 +3,17 @@ from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+from djangoproject.shortcuts import UrlBuilder
+
 admin.autodiscover()
 
-urlpatterns = patterns('',
+ub = UrlBuilder('djangoproject')
+
+urlpatterns = patterns('djangoproject.views',
+    ub.build('index')
+)
+
+urlpatterns += patterns('',
     # Examples:
     # url(r'^$', 'djangoproject.views.home', name='home'),
     # url(r'^djangoproject/', include('djangoproject.foo.urls')),
