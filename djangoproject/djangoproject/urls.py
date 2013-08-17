@@ -11,7 +11,8 @@ admin.autodiscover()
 ub = UrlBuilder('djangoproject')
 
 urlpatterns = patterns('djangoproject.views',
-    ub.build('index')
+    ub.build('index'),
+    ub.build('login'),
 )
 
 urlpatterns += patterns('',
