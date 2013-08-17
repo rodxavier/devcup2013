@@ -222,8 +222,6 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
 
-APPEND_SLASH = True
-
 try:
     from local_settings import *
 except Exception:
