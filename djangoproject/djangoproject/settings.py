@@ -101,7 +101,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
@@ -221,6 +221,8 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
+
+APPEND_SLASH = True
 
 try:
     from local_settings import *

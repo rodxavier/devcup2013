@@ -5,14 +5,16 @@ App.initialize = function() {
 }
 
 App.initialize_login = function() {
-  var username = $('.login-box .username-field').val();
-  var password = $('.login-box .password-field').val();
-
   $('.login-box .button').click(function(){
-    alert('testing');
+    var username = $('.login-box .username-field').val();
+    var password = $('.login-box .password-field').val();
+
+    $.post('/login/', {'username': username, 'password': password}, function(data){
+      alert(data);
+    });
   });
 }
 
-(function(){
+$(function(){
   App.initialize();
-})(jQuery)
+});
