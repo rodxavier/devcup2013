@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "FontAwesome";
+  src: url('../fonts/fontawesome-webfont.eot');
+  src: url('../fonts/fontawesome-webfont.eot?#iefix') format('eot'), url('../fonts/fontawesome-webfont.woff') format('woff'), url('../fonts/fontawesome-webfont.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sanuk";
+  src: url('../fonts/SanukWeb-Bold.eot');
+  src: url('../fonts/SanukWeb-Bold.eot?#iefix') format('eot'), url('../fonts/SanukWeb-Bold.woff') format('woff'), url('../fonts/SanukComp-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SanukSC";
+  src: url('../fonts/SanukScWeb-Bold.eot');
+  src: url('../fonts/SanukScWeb-Bold.eot?#iefix') format('eot'), url('../fonts/SanukScWeb-Bold.woff') format('woff'), url('../fonts/SanukScComp-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.icon:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 30px;
+}
+
+.icon-quick:before {
+  content: "\f0e7";
+  margin-right: 10px;
+}
+
+.icon-user:before {
+  content: "\f007";
+  margin-right: 10px;
+}
+
+.icon-search:before {
+  content: "\f002";
+  margin-right: 10px;
+}
+
+.icon-arrow-right:before { 
+  content: "\f061";
+}
+
+.icon-arrow-left:before { 
+  content: "\f060";
+}
+
+.icon-arrow-up:before { 
+  content: "\f062";
+}
+
+.icon-arrow-down:before { 
+  content: "\f063";
+}
