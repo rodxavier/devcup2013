@@ -1,11 +1,10 @@
 # Django settings for djangoproject project.
+import os
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 USE_STATIC = True
 
 PROJECT_DIR = os.path.join(PROJECT_DIR, '..')
-
-import os
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
