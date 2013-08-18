@@ -13,7 +13,9 @@ ub = UrlBuilder('djangoproject')
 urlpatterns = patterns('djangoproject.views',
     ub.build('index'),
     ub.build('login'),
-    ub.build('register')
+    ub.build('register'),
+    ub.build('dashboard'),
+    ub.build('logout')
 )
 
 urlpatterns += patterns('',
