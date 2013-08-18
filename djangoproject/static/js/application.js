@@ -6,6 +6,16 @@ App.initialize = function() {
   App.initialize_logout();
   App.initialize_create_deal_form();
   App.initialize_sidebar();
+  App.initialize_deal_tile();
+}
+
+App.initialize_deal_tile = function() {
+  $('.dashboard-content .deal-div').click(function() {
+    var $el = $(this);
+    var deal_id = $el.attr('deal-id');
+
+    window.location = '/deal/' + deal_id + '/'
+  });
 }
 
 App.initialize_sidebar = function() {
