@@ -2,7 +2,7 @@ from djangoproject.shortcuts import ReturnBuilder
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
-from djangoproject.forms import CreateDealForm
+from djangoproject.forms import CreateDealForm, CreateOfferForm
 from marketplace.models import Deal, Offer
 
 rb = ReturnBuilder('djangoproject')
@@ -11,11 +11,35 @@ def index(request):
     return rb.render_to_response("index", {}, request)
 
 def deal(request, id):
+
+    if request.method == 'POST':
+        form = CreateOfferForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+
+
+    d = Deal.objects.get(pk=id)
+
     data = {
-        'deal': Deal.objects.get(pk=id)
+        'deal': d,
+        'yours': d.owner == request.user
     }
 
     return rb.render_to_response("deal_page", data, request)
+
+def account(request, id):
+    user = User.objects.get(pk=id)
+
+    deals = Deal.objects.filter(owner=user).order_by('-created_at')
+
+    data = {
+        'deals': deals,
+        'other_user': user
+    }
+    return rb.render_to_response("account", data, request)
+
 
 def search(request, query):
     deals = Deal.objects.search(query).order_by('-created_at')

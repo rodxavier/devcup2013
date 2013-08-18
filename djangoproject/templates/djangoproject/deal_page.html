@@ -7,7 +7,28 @@
     <div class='right main-right-box shadow'>
 	    {% include "djangoproject/deal.html" with deal=deal %}
 
-	    <div class='title-box'>Offers</div>
+        {% ifnotequal deal.deal_offered_to.count 0 %}
+	        <div class='title-box'>Offers</div>
+        {% endifnotequal %}
+
+        {% if not yours %}
+    	    <div class='title-box'>Create Offer</div>
+            <div class='deal'>
+			    <div class='left deal-details'>
+                    <form method='POST' class='create-offer-form'>
+                        <input type='hidden' name='owner' value='{{ request.user.id }}' />
+                        <input type='hidden' name='deal_offered_to' value='{{ deal.id }}' />
+				        <input type='text' class='amount-field long-field' placeholder='Amount' name='amount' />
+				        <input type='text' class='description-field long-field' placeholder='Description' name='description' />
+                    </form>
+				    <br /><br /><br />
+				    <div class='button w200 accept submit-offer'>Submit</div>
+			    </div>
+			    <div class='clear'></div>
+		    </div>
+        {% endif %}
+
+
     </div>
 
 {% endblock %}

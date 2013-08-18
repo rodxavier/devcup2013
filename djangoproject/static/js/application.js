@@ -7,10 +7,17 @@ App.initialize = function() {
   App.initialize_create_deal_form();
   App.initialize_sidebar();
   App.initialize_deal_tile();
+  App.initialize_create_offer_form();
+}
+
+App.initialize_create_offer_form = function() {
+  $('.submit-offer').click(function(){
+    $('.create-offer-form').submit();
+  });
 }
 
 App.initialize_deal_tile = function() {
-  $('.dashboard-content .deal-div').click(function() {
+  $('.dashboard-content .deal-div, .search-results-content .deal-div').click(function() {
     var $el = $(this);
     var deal_id = $el.attr('deal-id');
 

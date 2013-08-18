@@ -1,0 +1,17 @@
+{% extends "djangoproject/base.html" %}
+
+{% block content %}
+
+    {% include "djangoproject/sidebar.html" %}
+
+<div class='right main-right-box shadow dashboard-content'>
+	<div class='title-box'>{{ other_user.username }}'s Deals</div>
+    {% for deal in deals %}
+
+	    {% include "djangoproject/deal.html" with deal=deal %}
+
+    {% endfor %}
+</div>
+
+<div class='clear'></div>
+{% endblock %}
