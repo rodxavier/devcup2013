@@ -11,11 +11,15 @@
 	        <div class='title-box'>Offers</div>
             {% for offer in offers %}
 
+                {% if offer.deal_owned %}
+		        <div class='deal deal-owned' deal-id='{{ offer.deal_owned.id }}'>
+                {% else %}
 		        <div class='deal'>
+                {% endif %}
 			        <div class='left deal-details'>
 				        <div class='text-2 icon icon-user'>{{ offer.owner.username }} / {{ offer.owner.email }}</div>
 				        <br />
-				        <div class='text-6'>{{ offer.amount }}</div>
+				        <div class='text-6'>{{ offer.offer_string }}</div>
 				        <div class='text-3'>{{ offer.description }}</div>
                         {% if offer.is_accepted %}
                             <div class='5'>Accepted</div>
@@ -46,6 +50,13 @@
                         <input type='hidden' name='deal_offered_to' value='{{ deal.id }}' />
 				        <input type='text' class='amount-field long-field' placeholder='Amount' name='amount' />
 				        <input type='text' class='description-field long-field' placeholder='Description' name='description' />
+                        {% ifnotequal user_available_deals.length 0 %}
+                            <select name='deal_owned'>
+                                {% for d in user_available_deals %}
+                                    <option value="{{ d.id }}">{{ d.title }}</option>
+                                {% endfor %}
+                            </select>
+                        {% endifnotequal %}
                     </form>
 				    <br /><br /><br />
 				    <div class='button w200 accept submit-offer'>Submit</div>

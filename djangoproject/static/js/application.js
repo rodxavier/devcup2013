@@ -34,6 +34,13 @@ App.initialize_create_offer_form = function() {
 }
 
 App.initialize_deal_tile = function() {
+  $('.deal-owned').click(function(){
+    $el = $(this);
+    var deal_id = $el.attr('deal-id');
+
+    window.location = '/deal/' + deal_id + '/';
+  });
+
   $('.dashboard-content .deal-div, .search-results-content .deal-div').click(function() {
     var $el = $(this);
     var deal_id = $el.attr('deal-id');

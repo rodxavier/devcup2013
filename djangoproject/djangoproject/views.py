@@ -42,10 +42,13 @@ def deal(request, id):
 
     d = Deal.objects.get(pk=id)
 
+    user_available_deals = Deal.objects.filter(owner=request.user, is_available=True)
+
     data = {
         'deal': d,
         'yours': d.owner == request.user,
-        'offers': d.deal_offered_to.all()
+        'offers': d.deal_offered_to.all(),
+        'user_available_deals': user_available_deals
     }
 
     return rb.render_to_response("deal_page", data, request)

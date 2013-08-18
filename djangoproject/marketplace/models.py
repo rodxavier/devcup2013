@@ -47,6 +47,16 @@ class Offer(models.Model):
     
     def __unicode__(self):
         return self.description
+
+    @property
+    def offer_string(self):
+        if not self.amount:
+            return self.deal_owned.title
+        
+        if not self.deal_owned:
+            return 'P' + str(self.amount)
+
+        return 'P' + str(self.amount) + " + " + self.deal_owned.title
         
     def accept_offer(self):
         self.is_accepted = True
