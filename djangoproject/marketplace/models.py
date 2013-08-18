@@ -49,6 +49,15 @@ class Offer(models.Model):
         return self.description
 
     @property
+    def offer_status(self):
+        if not self.is_accepted and not self.is_rejected:
+            return 'Pending'
+        if self.is_accepted:
+            return 'Accepted'
+        if self.is_rejected:
+            return 'Rejected'
+
+    @property
     def offer_string(self):
         if not self.amount:
             return self.deal_owned.title
