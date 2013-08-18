@@ -20,6 +20,8 @@ urlpatterns = patterns('djangoproject.views',
     ub.build('create_deal'),
     ub.build('search', 'query'),
     ub.build('deal', 'id'),
+    ub.build('accept_offer', 'id'),
+    ub.build('reject_offer', 'id'),
 )
 
 urlpatterns += patterns('',

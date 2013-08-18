@@ -9,6 +9,32 @@
 
         {% ifnotequal deal.deal_offered_to.count 0 %}
 	        <div class='title-box'>Offers</div>
+            {% for offer in offers %}
+
+		        <div class='deal'>
+			        <div class='left deal-details'>
+				        <div class='text-2 icon icon-user'>{{ offer.owner.username }} / {{ offer.owner.email }}</div>
+				        <br />
+				        <div class='text-6'>{{ offer.amount }}</div>
+				        <div class='text-3'>{{ offer.description }}</div>
+                        {% if offer.is_accepted %}
+                            <div class='5'>Accepted</div>
+                        {% endif %}
+
+				        <div class='clear'></div>
+
+                        {% if deal.is_available %}
+                            {% if yours %}
+        				        <div class='button w200 accept left offer-accept' offer-id='{{ offer.id }}'>Accept</div>
+	        			        <div class='button w200 reject left offer-reject' offer-id='{{ offer.id }}'>Reject</div>
+                            {% endif %}
+                        {% endif %}
+			        </div>
+			        <div class='clear'></div>
+		        </div>
+
+
+            {% endfor %}
         {% endifnotequal %}
 
         {% if not yours %}

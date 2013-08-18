@@ -4,11 +4,31 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import User
 from djangoproject.forms import CreateDealForm, CreateOfferForm
 from marketplace.models import Deal, Offer
+from django.shortcuts import redirect
 
 rb = ReturnBuilder('djangoproject')
 
 def index(request):
     return rb.render_to_response("index", {}, request)
+
+def accept_offer(request, id):
+    offer = Offer.objects.get(pk=id)
+    deal_id = offer.deal_offered_to.id
+
+    offer.accept_offer()
+
+    return redirect("/deal/" + str(deal_id))
+
+def reject_offer(request, id):
+    user = request.user
+
+    offer = Offer.objects.get(pk=id)
+    deal_id = offer.deal_offered_to.id
+
+    offer.is_rejected = True
+    offer.save()
+
+    return redirect("/deal/" + str(deal_id))
 
 def deal(request, id):
 
@@ -24,7 +44,8 @@ def deal(request, id):
 
     data = {
         'deal': d,
-        'yours': d.owner == request.user
+        'yours': d.owner == request.user,
+        'offers': d.deal_offered_to.all()
     }
 
     return rb.render_to_response("deal_page", data, request)

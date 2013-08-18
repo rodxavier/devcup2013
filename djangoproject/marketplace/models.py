@@ -50,6 +50,11 @@ class Offer(models.Model):
         
     def accept_offer(self):
         self.is_accepted = True
-        self.deal_offered_to.is_sold = True
-        self.deal_offered_to.is_available = False
-        self.__class__.objects.filter(deal_offered_to=self.deal_offered_to).update(is_accepted=False)
+        do = self.deal_offered_to
+        do.is_sold = True
+        do.is_available = False
+        do.save()
+
+        self.__class__.objects.filter(deal_offered_to=self.deal_offered_to).update(is_rejected=True)
+        self.save()
+        

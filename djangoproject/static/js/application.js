@@ -8,6 +8,23 @@ App.initialize = function() {
   App.initialize_sidebar();
   App.initialize_deal_tile();
   App.initialize_create_offer_form();
+  App.initialize_accept_reject_offer();
+}
+
+App.initialize_accept_reject_offer = function() {
+  $('.offer-accept').click(function(){
+    var $button = $(this);
+    var offer_id = $button.attr('offer-id');
+
+    window.location = '/accept_offer/' + offer_id + '/'
+  });
+
+  $('.offer-reject').click(function(){
+    var $button = $(this);
+    var offer_id = $button.attr('offer-id');
+
+    window.location = '/reject_offer/' + offer_id + '/'
+  });
 }
 
 App.initialize_create_offer_form = function() {
