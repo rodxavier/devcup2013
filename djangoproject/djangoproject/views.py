@@ -10,6 +10,15 @@ rb = ReturnBuilder('djangoproject')
 def index(request):
     return rb.render_to_response("index", {}, request)
 
+def search(request, query):
+    deals = Deal.objects.search(query).order_by('-created_at')
+
+    data = {
+        'deals': deals,
+        'search_query': query
+    }
+    return rb.render_to_response("search_results", data, request)
+
 def create_deal(request):
     if request.method == 'POST':
         create_form = CreateDealForm(request.POST, request.FILES)
