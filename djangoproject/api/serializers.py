@@ -50,10 +50,12 @@ class OfferSerializer(serializers.ModelSerializer):
         return obj.owner.mobile
         
     def get_deal_owned_title(self, obj):
-        return obj.deal_owned.title
+        if obj.deal_owned is not None:
+            return obj.deal_owned.title
         
     def get_deal_offered_to_title(self, obj):
-        return obj.deal_offered_to.title
+        if obj.deal_owned is not None:
+            return obj.deal_offered_to.title
         
 class DealSerializer(serializers.ModelSerializer):
     owner_username = serializers.SerializerMethodField('get_owner_username')
