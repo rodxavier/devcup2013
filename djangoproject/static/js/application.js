@@ -10,7 +10,16 @@ App.initialize_login = function() {
     var password = $('.login-box .password-field').val();
 
     $.post('/login/', {'username': username, 'password': password}, function(data){
-      alert(data);
+      if (data == 'true') {
+        $('.login-box .error-message').hide();
+        $('.login-box .success-message').show();
+
+        setTimeout(function(){
+          window.location = '/dashboard/';
+        }, 1000);
+      } else {
+        $('.login-box .error-message').show();
+      }
     });
   });
 }
