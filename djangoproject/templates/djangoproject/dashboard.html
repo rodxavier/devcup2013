@@ -6,22 +6,11 @@
 
 <div class='right main-right-box shadow'>
 	<div class='title-box'>My Deals</div>
-	<div class='deal'>
-		<div class='left'>
-			<img src='#' width='150px' height='150px' />
-		</div>
-		<div class='left deal-details'>
-			<div class='text-2'>Deal Name</div>
-			<div class='text-5'>P1,500</div>
-			<div class='text-3'>Available</div>
-			<div class='text-4'>Deal Description Lorem Ipsum Dolor...</div>
-			<br />
-			<div class='text-6'>5 Offers</div>
-			<br />
-			
-		</div>
-		<div class='clear'></div>
-	</div>
+    {% for deal in deals %}
+
+	    {% include "djangoproject/deal.html" with deal=deal %}
+
+    {% endfor %}
 </div>
 
 <div class='right main-right-box shadow'>

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login as django_login, logout as d
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
 from djangoproject.forms import CreateDealForm
+from marketplace.models import Deal, Offer
 
 rb = ReturnBuilder('djangoproject')
 
@@ -30,10 +31,10 @@ def create_deal(request):
 def dashboard(request):
     user = request.user
 
-    print user.email
+    deals = Deal.objects.filter(owner=user).order_by('-created_at')
 
     data = {
-
+        'deals': deals
     }
     return rb.render_to_response("dashboard", data, request)
 

@@ -1,0 +1,17 @@
+<div class='deal'>
+    <div class='left'>
+	    <img src='{{ deal.image.url }}' width='150px' height='150px' />
+    </div>
+    <div class='left deal-details'>
+	    <div class='text-2'>{{ deal.title }}</div>
+	    <div class='text-5'>P{{ deal.price }}</div>
+	    <div class='text-3'>{{ deal.is_available_text }}</div>
+	    <div class='text-4'>{{ deal.description }}</div>
+	    <br />
+	    <div class='text-6'>{{ deal.deal_offered_to.count }} Offer{{deal.offers_all.count | pluralize}}</div>
+	    <br />
+	
+    </div>
+    <div class='clear'></div>
+</div>
+

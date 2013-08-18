@@ -21,7 +21,14 @@ class Deal(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     objects = DealManager()
-    
+
+    @property
+    def is_available_text(self):
+        if self.is_available:
+            return "Available"
+        else:
+            return "Not Available"
+
     def __unicode__(self):
         return self.title
         
