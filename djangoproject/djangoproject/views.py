@@ -10,6 +10,13 @@ rb = ReturnBuilder('djangoproject')
 def index(request):
     return rb.render_to_response("index", {}, request)
 
+def deal(request, id):
+    data = {
+        'deal': Deal.objects.get(pk=id)
+    }
+
+    return rb.render_to_response("deal_page", data, request)
+
 def search(request, query):
     deals = Deal.objects.search(query).order_by('-created_at')
 

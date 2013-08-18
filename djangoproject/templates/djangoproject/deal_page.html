@@ -1,0 +1,13 @@
+{% extends "djangoproject/base.html" %}
+
+{% block content %}
+
+    {% include "djangoproject/sidebar.html" %}
+
+    <div class='right main-right-box shadow'>
+	    {% include "djangoproject/deal.html" with deal=deal %}
+
+	    <div class='title-box'>Offers</div>
+    </div>
+
+{% endblock %}

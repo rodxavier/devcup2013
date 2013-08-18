@@ -18,6 +18,7 @@ urlpatterns = patterns('djangoproject.views',
     ub.build('logout'),
     ub.build('create_deal'),
     ub.build('search', 'query'),
+    ub.build('deal', 'id'),
 )
 
 urlpatterns += patterns('',
