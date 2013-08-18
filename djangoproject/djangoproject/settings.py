@@ -211,6 +211,7 @@ AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = 'team-josh-devcup-2013'
 AWS_LOCATION = 'ap-southeast-1'
+AWS_QUERYSTRING_AUTH = False
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
