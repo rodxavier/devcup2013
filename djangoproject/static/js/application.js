@@ -16,6 +16,16 @@ App.initialize_sidebar = function() {
   $('.view-dashboard-link').click(function() {
     window.location = '/dashboard/';
   });
+
+  $('.search-button').click(function() {
+    var $search_field = $('.search-field');
+
+    var query = $search_field.val();
+
+    if (query.length > 0) {
+      window.location = '/search/' + query + '/'
+    }
+  });
 }
 
 App.initialize_create_deal_form = function() {
