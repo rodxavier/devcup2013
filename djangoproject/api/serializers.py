@@ -54,7 +54,7 @@ class OfferSerializer(serializers.ModelSerializer):
             return obj.deal_owned.title
         
     def get_deal_offered_to_title(self, obj):
-        if obj.deal_owned is not None:
+        if obj.deal_offered_to is not None:
             return obj.deal_offered_to.title
         
 class DealSerializer(serializers.ModelSerializer):
