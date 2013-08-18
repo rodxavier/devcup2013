@@ -70,6 +70,22 @@ input:focus, select:focus, textarea:focus, button:focus {
   background-color: black;
 }
 
+.success-message {
+  padding: 12px;
+  background-color: green;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.error-message {
+  padding: 12px;
+  background-color: red;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 .content {
   margin-top: 40px;
   min-height: 400px;
