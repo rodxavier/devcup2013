@@ -4,6 +4,24 @@ App.initialize = function() {
   App.initialize_login();
   App.initialize_registration_form();
   App.initialize_logout();
+  App.initialize_create_deal_form();
+  App.initialize_sidebar();
+}
+
+App.initialize_sidebar = function() {
+  $('.create-deal-link').click(function() {
+    window.location = '/create_deal/';
+  });
+
+  $('.view-dashboard-link').click(function() {
+    window.location = '/dashboard/';
+  });
+}
+
+App.initialize_create_deal_form = function() {
+  $('.create-deal-button').click(function(){
+    $('.create-deal-form').submit();
+  });
 }
 
 App.initialize_registration_form = function() {

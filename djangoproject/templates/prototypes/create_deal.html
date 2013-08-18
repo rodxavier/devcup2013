@@ -34,11 +34,12 @@
 	
 	<div class='right main-right-box shadow form-box'>
 		<div class='title-box'>Create Deal</div>
-		<input type='text' class='large-field' placeholder='Product Title' />
-		<input type='text' class='large-field' placeholder='Description' />
-		<input type='text' class='large-field' placeholder='Amount' />
-		<input type='file' class='large-field' />
-		
+            <form method='POST' enctype='multipart/form-data' class='create-deal-form'>
+	        	<input type='text' class='large-field' placeholder='Product Title' name='title'/>
+        		<input type='text' class='large-field' placeholder='Description'  name='description'/>
+	        	<input type='text' class='large-field' placeholder='Amount'  name='price'/>
+	        	<input type='file' class='large-field' name='image'/>
+		    </form>
 		<br /><br />
 		
 		<div class='button create-deal-button left'>Create Deal</div>

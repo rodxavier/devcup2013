@@ -2,11 +2,29 @@ from djangoproject.shortcuts import ReturnBuilder
 from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.contrib.auth.decorators import login_required
 from accounts.models import User
+from djangoproject.forms import CreateDealForm
 
 rb = ReturnBuilder('djangoproject')
 
 def index(request):
     return rb.render_to_response("index", {}, request)
+
+def create_deal(request):
+    if request.method == 'POST':
+        create_form = CreateDealForm(request.POST, request.FILES)
+
+        if create_form.is_valid():
+            deal = create_form.save(commit=False)
+            deal.owner = request.user
+            deal.save()
+
+            return rb.render_to_response('create_deal', {}, request)            
+
+        else:
+            return rb.render_to_response('create_deal', {}, request)
+            
+    else:
+        return rb.render_to_response('create_deal', {}, request)
 
 @login_required(login_url='/')
 def dashboard(request):

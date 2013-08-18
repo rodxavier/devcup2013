@@ -1,0 +1,21 @@
+{% extends "djangoproject/base.html" %}
+
+{% block content %}
+
+    {% include "djangoproject/sidebar.html" %}
+
+    <div class='right main-right-box shadow form-box'>
+		<div class='title-box'>Create Deal</div>
+            <form method='POST' enctype='multipart/form-data' class='create-deal-form'>
+	        	<input type='text' class='large-field' placeholder='Product Title' name='title'/>
+        		<input type='text' class='large-field' placeholder='Description'  name='description'/>
+	        	<input type='text' class='large-field' placeholder='Amount'  name='price'/>
+	        	<input type='file' class='large-field' name='image'/>
+		    </form>
+		<br /><br />
+		
+		<div class='button create-deal-button left'>Create Deal</div>
+		<div class='clear'></div>
+	</div>
+
+{% endblock %}
