@@ -4,16 +4,16 @@
 
     {% include "djangoproject/sidebar.html" %}
 
-    <div class='right main-right-box shadow form-box'>
-        <div class='right main-right-box shadow'>
-		    <div class='title-box'>Search Results for "{{ search_query }}"</div>
-                {% for deal in deals %}
 
-	                {% include "djangoproject/deal.html" with deal=deal %}
+    <div class='right main-right-box shadow'>
+	    <div class='title-box'>Search Results for "{{ search_query }}"</div>
+            {% for deal in deals %}
 
-                {% endfor %}
-            </div>
-	    </div>
-	</div>
+                {% include "djangoproject/deal.html" with deal=deal %}
+
+            {% endfor %}
+        </div>
+    </div>
+
 
 {% endblock %}
