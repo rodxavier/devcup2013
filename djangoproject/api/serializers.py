@@ -56,7 +56,7 @@ class DealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deal
         fields = ('id', 'owner', 'title', 'description', 'price', 'image', 'owner_username',
-                    'owner_email', 'owner_mobile', 'image_url')
+                    'owner_email', 'owner_mobile', 'image_url', 'is_available', 'is_sold', 'is_open')
         
     def restore_object(self, attrs, instance=None):
         if instance:
