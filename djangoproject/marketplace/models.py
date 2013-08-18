@@ -32,6 +32,7 @@ class Offer(models.Model):
     amount = models.DecimalField('Price', max_digits=20, decimal_places=2, blank=True, null=True)
     description = models.CharField('Description', max_length=100, blank=True, null=True, default='')
     is_accepted = models.BooleanField('Accepted', default=False)
+    is_rejected = models.BooleanField('Rejected', default=False)
     is_cancelled = models.BooleanField('Cancelled', default=False)
     
     created_at = models.DateTimeField(auto_now_add=True)
