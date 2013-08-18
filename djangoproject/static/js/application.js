@@ -3,6 +3,7 @@ App = {}
 App.initialize = function() {
   App.initialize_login();
   App.initialize_registration_form();
+  App.initialize_logout();
 }
 
 App.initialize_registration_form = function() {
@@ -76,6 +77,12 @@ App.initialize_login = function() {
         $('.login-box .error-message').show();
       }
     });
+  });
+}
+
+App.initialize_logout = function() {
+  $('.logout-button').click(function(){
+    window.location = '/logout/';
   });
 }
 
