@@ -10,6 +10,9 @@ urlpatterns = patterns('snippets.views',
     url(r'^accounts/login/$', obtain_auth_token, name='api_accounts_login'),
     
     url(r'^offers/create/$', views.CreateOfferAPIView.as_view(), name='api_offer_create'),
+    url(r'^offers/cancel/$', views.CancelOfferAPIView.as_view(), name='api_offer_cancel'),
+    url(r'^offers/accept/$', views.AcceptOfferAPIView.as_view(), name='api_offer_accept'),
+    url(r'^offers/reject/$', views.RejectOfferAPIView.as_view(), name='api_offer_reject'),
     url(r'^offers/list/deal/$', views.DealOfferAPIView.as_view(), name='api_deal_offer_list'),
     url(r'^offers/list/user/$', views.UserOfferAPIView.as_view(), name='api_user_offer_list'),
     

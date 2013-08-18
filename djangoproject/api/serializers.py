@@ -24,7 +24,7 @@ class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
         fields = ('id', 'owner', 'deal_offered_to', 'deal_owned', 'amount', 'description',
-                    'is_accepted', 'is_cancelled', 'created_at', 'updated_at',
+                    'is_accepted', 'is_rejected', 'is_cancelled', 'created_at', 'updated_at',
                     'owner_username', 'owner_email', 'owner_mobile')
                     
     def restore_object(self, attrs, instance=None):

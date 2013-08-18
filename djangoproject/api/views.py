@@ -50,7 +50,7 @@ class DealOfferAPIView(generics.ListAPIView):
     def get_queryset(self):
         request = self.request
         deal_id = request.GET.get('id')
-        offers = Offer.objects.filter(deal_offered_to=deal_id, is_cancelled=False)
+        offers = Offer.objects.filter(deal_offered_to=deal_id, is_cancelled=False, is_rejected=False)
         return offers
 
 class UserOfferAPIView(generics.ListAPIView):
@@ -61,7 +61,53 @@ class UserOfferAPIView(generics.ListAPIView):
         user = self.request.user
         offers = Offer.objects.filter(owner=user).order_by('-created_at')
         return offers
+        
+class CancelOfferAPIView(generics.ListAPIView):
+    model = Offer
+    serializer_class = OfferSerializer
+    
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        offer_id = request.POST.get('offer_id')
+        if offer_id is not None:
+            offer = Offer.objects.get(id=offer_id)
+            if offer.owner == user:
+                offer.is_cancelled = True
+                offer.save()
+                return Response({'success': True}, status=status.HTTP_201_CREATED,
+                                headers=headers)
+        return Response({'success': False, 'error': 'Bad Request'}, status=status.HTTP_400_BAD_REQUEST)
             
+class AcceptOfferAPIView(generics.ListAPIView):
+    model = Offer
+    serializer_class = OfferSerializer
+    
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        offer_id = request.POST.get('offer_id')
+        if offer_id is not None:
+            offer = Offer.objects.get(id=offer_id)
+            if offer.deal_offered_to.owner == user:
+                offer.accept_offer()
+                return Response({'success': True}, status=status.HTTP_201_CREATED,
+                                headers=headers)
+        return Response({'success': False, 'error': 'Bad Request'}, status=status.HTTP_400_BAD_REQUEST)
+        
+class RejectOfferAPIView(generics.ListAPIView):
+    model = Offer
+    serializer_class = OfferSerializer
+    
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        offer_id = request.POST.get('offer_id')
+        if offer_id is not None:
+            offer = Offer.objects.get(id=offer_id)
+            if offer.deal_offered_to.owner == user:
+                offer.is_rejected = True
+                return Response({'success': True}, status=status.HTTP_201_CREATED,
+                                headers=headers)
+        return Response({'success': False, 'error': 'Bad Request'}, status=status.HTTP_400_BAD_REQUEST)
+        
 class CreateDealAPIView(generics.CreateAPIView):
     serializer_class =  DealSerializer
     permission_classes = (IsAuthenticated,)
