@@ -20,12 +20,14 @@ class OfferSerializer(serializers.ModelSerializer):
     owner_username = serializers.SerializerMethodField('get_owner_username')
     owner_email = serializers.SerializerMethodField('get_owner_email')
     owner_mobile = serializers.SerializerMethodField('get_owner_mobile')
+    deal_owned_title = serializers.SerializerMethodField('get_deal_owned_title')
+    deal_offered_to_title = serializers.SerializerMethodField('get_deal_offered_to_title')
 
     class Meta:
         model = Offer
         fields = ('id', 'owner', 'deal_offered_to', 'deal_owned', 'amount', 'description',
                     'is_accepted', 'is_rejected', 'is_cancelled', 'created_at', 'updated_at',
-                    'owner_username', 'owner_email', 'owner_mobile')
+                    'owner_username', 'owner_email', 'owner_mobile', 'deal_owned_title', 'deal_offered_to_title')
                     
     def restore_object(self, attrs, instance=None):
         if instance:
@@ -46,6 +48,12 @@ class OfferSerializer(serializers.ModelSerializer):
         
     def get_owner_mobile(self, obj):
         return obj.owner.mobile
+        
+    def get_deal_owned_title(self, obj):
+        return obj.deal_owned.title
+        
+    def get_deal_offered_to_title(self, obj):
+        return obj.deal_offered_to.title
         
 class DealSerializer(serializers.ModelSerializer):
     owner_username = serializers.SerializerMethodField('get_owner_username')
