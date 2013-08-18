@@ -43,13 +43,13 @@ class CreateOfferAPIView(generics.CreateAPIView):
         else:
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
-class UserDealAPIView(generics.ListAPIView):
+class UserOfferAPIView(generics.ListAPIView):
     model = Offer
     serializer_class = OfferSerializer
     
     def get_queryset(self):
         user = self.request.user
-        deals = Offer.objects.filter(owner=user)
+        offers = Offer.objects.filter(owner=user)
         return offers
             
 class CreateDealAPIView(generics.CreateAPIView):

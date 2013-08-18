@@ -38,6 +38,15 @@ class OfferSerializer(serializers.ModelSerializer):
             instance.is_cancelled = attrs.get('is_cancelled', instance.is_cancelled)
         return Offer(**attrs)
         
+    def get_owner_username(self, obj):
+        return obj.owner.username
+        
+    def get_owner_email(self, obj):
+        return obj.owner.email
+        
+    def get_owner_mobile(self, obj):
+        return obj.owner.mobile
+        
 class DealSerializer(serializers.ModelSerializer):
     owner_username = serializers.SerializerMethodField('get_owner_username')
     owner_email = serializers.SerializerMethodField('get_owner_email')

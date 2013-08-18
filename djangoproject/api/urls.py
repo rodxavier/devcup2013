@@ -10,10 +10,11 @@ urlpatterns = patterns('snippets.views',
     url(r'^accounts/login/$', obtain_auth_token, name='api_accounts_login'),
     
     url(r'^offers/create/$', views.CreateOfferAPIView.as_view(), name='api_offer_create'),
+    url(r'^offers/list/user/$', views.UserOfferAPIView.as_view(), name='api_user_offer_list'),
     
     url(r'^deals/create/$', views.CreateDealAPIView.as_view(), name='api_deal_create'),
     url(r'^deals/list/$', views.ListDealAPIView.as_view(), name='api_deal_list'),
-    url(r'^deals/list/user/$', views.ListDealAPIView.as_view(), name='api_user_deal_list'),
+    url(r'^deals/list/user/$', views.UserDealAPIView.as_view(), name='api_user_deal_list'),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
