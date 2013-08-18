@@ -49,7 +49,7 @@ class UserOfferAPIView(generics.ListAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        offers = Offer.objects.filter(owner=user)
+        offers = Offer.objects.filter(owner=user).order_by('-created_at')
         return offers
             
 class CreateDealAPIView(generics.CreateAPIView):
@@ -76,7 +76,7 @@ class ListDealAPIView(generics.ListAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        deals = Deal.objects.exclude(owner=user)
+        deals = Deal.objects.exclude(owner=user).order_by('-created_at')
         return deals
         
 class UserDealAPIView(generics.ListAPIView):
@@ -85,5 +85,5 @@ class UserDealAPIView(generics.ListAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        deals = Deal.objects.filter(owner=user)
+        deals = Deal.objects.filter(owner=user).order_by('-created_at')
         return deals
