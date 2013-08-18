@@ -31,3 +31,9 @@ class Offer(models.Model):
     
     def __unicode__(self):
         return self.description
+        
+    def accept_offer(self):
+        self.is_accepted = True
+        self.deal_offered_to.is_sold = True
+        self.deal_offered_to.is_available = False
+        self.__class__.objects.filter(deal_offered_to=self.deal_offered_to).update(is_accepted=False)
