@@ -34,11 +34,15 @@ class OfferSerializer(serializers.ModelSerializer):
         return Offer(**attrs)
         
 class DealSerializer(serializers.ModelSerializer):
+    owner_username = serializers.SerializerMethodField('get_owner_username')
+    owner_email = serializers.SerializerMethodField('get_owner_email')
+    owner_mobile = serializers.SerializerMethodField('get_owner_mobile')
     image_url = serializers.SerializerMethodField('get_image_url')
  
     class Meta:
         model = Deal
-        fields = ('id', 'owner', 'title', 'description', 'price', 'image')
+        fields = ('id', 'owner', 'title', 'description', 'price', 'image', 'owner_username',
+                    'owner_email', 'owner_mobile', 'image_url')
         
     def restore_object(self, attrs, instance=None):
         if instance:
@@ -53,3 +57,12 @@ class DealSerializer(serializers.ModelSerializer):
         
     def get_image_url(self, obj):
         return obj.image.url
+        
+    def get_owner_username(self, obj):
+        return obj.owner.username
+        
+    def get_owner_email(self, obj):
+        return obj.owner.email
+        
+    def get_owner_mobile(self, obj):
+        return obj.owner.mobile

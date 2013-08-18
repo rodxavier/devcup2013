@@ -12,6 +12,7 @@ urlpatterns = patterns('snippets.views',
     url(r'^offers/create/$', views.CreateOfferAPIView.as_view(), name='api_offer_create'),
     
     url(r'^deals/create/$', views.CreateDealAPIView.as_view(), name='api_deal_create'),
+    url(r'^deals/list/$', views.ListDealAPIView.as_view(), name='api_deal_list'),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
