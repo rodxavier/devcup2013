@@ -1,5 +1,11 @@
 from django.conf import settings
 from django.db import models
+from django.db.models import Q
+
+class DealManager(models.Manager):
+    
+    def search(self, query=''):
+        return self.filter(Q(title__icontains=query) | Q(description__icontains=query))
 
 class Deal(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
@@ -13,6 +19,8 @@ class Deal(models.Model):
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    objects = DealManager()
     
     def __unicode__(self):
         return self.title
@@ -31,3 +39,9 @@ class Offer(models.Model):
     
     def __unicode__(self):
         return self.description
+        
+    def accept_offer(self):
+        self.is_accepted = True
+        self.deal_offered_to.is_sold = True
+        self.deal_offered_to.is_available = False
+        self.__class__.objects.filter(deal_offered_to=self.deal_offered_to).update(is_accepted=False)
