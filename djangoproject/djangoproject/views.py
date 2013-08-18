@@ -96,9 +96,11 @@ def dashboard(request):
     user = request.user
 
     deals = Deal.objects.filter(owner=user).order_by('-created_at')
+    offers = Offer.objects.filter(owner=user).order_by('-created_at')
 
     data = {
-        'deals': deals
+        'deals': deals,
+        'offers': offers
     }
     return rb.render_to_response("dashboard", data, request)
 

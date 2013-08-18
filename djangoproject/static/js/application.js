@@ -9,6 +9,15 @@ App.initialize = function() {
   App.initialize_deal_tile();
   App.initialize_create_offer_form();
   App.initialize_accept_reject_offer();
+  App.initialize_dashboard_offer();
+}
+
+App.initialize_dashboard_offer = function() {
+  $('.dashboard-offer').click(function(){
+    var $el = $(this);
+    var deal_id = $el.attr('deal-id');
+    window.location = '/deal/' + deal_id + '/';
+  });
 }
 
 App.initialize_accept_reject_offer = function() {

@@ -15,19 +15,21 @@
 
 <div class='right main-right-box shadow'>
 	<div class='title-box'>My Offers</div>	
-	<div class='deal'>
-		<div class='left'>
-			<img src='#' width='150px' height='150px' />
-		</div>
-		<div class='left deal-details'>
-			<div class='text-2'>Deal Name</div>
-			<div class='text-5'>P1,500</div>
-			<div class='text-4'>Deal Description Lorem Ipsum Dolor Lorem Ipsum Dolor Lorem Ipsum Dolor</div>
-			<br />
-			<div class='text-6'>Offer: P1,500 + PSP</div>
-		</div>
-		<div class='clear'></div>
-	</div>
+	{% for offer in offers %}
+	    <div class='deal dashboard-offer' deal-id='{{ offer.deal_offered_to.id }}'>
+		    <div class='left'>
+			    <img src='{{ offer.deal_offered_to.image.url }}' width='150px' height='150px' />
+		    </div>
+		    <div class='left deal-details'>
+			    <div class='text-2'>{{ offer.deal_offered_to.title }}</div>
+			    <div class='text-5'>{{ offer.deal_offered_to.price }}</div>
+			    <div class='text-4'>{{ offer.deal_offered_to.description }}</div>
+			    <br />
+			    <div class='text-6'>Offer: {{ offer.offer_string }}</div>
+		    </div>
+		    <div class='clear'></div>
+	    </div>
+    {% endfor %}
 </div>
 
 <div class='clear'></div>
