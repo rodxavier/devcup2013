@@ -52,6 +52,7 @@
 				        <input type='text' class='description-field long-field' placeholder='Description' name='description' />
                         {% ifnotequal user_available_deals.length 0 %}
                             <select name='deal_owned'>
+                                <option value=''>--None--</option>
                                 {% for d in user_available_deals %}
                                     <option value="{{ d.id }}">{{ d.title }}</option>
                                 {% endfor %}
