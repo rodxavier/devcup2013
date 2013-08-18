@@ -50,7 +50,7 @@ class DealOfferAPIView(generics.ListAPIView):
     def get_queryset(self):
         request = self.request
         deal_id = request.GET.get('id')
-        offers = Offer.objects_filter(deal_offered_to=deal_id, is_cancelled=False)
+        offers = Offer.objects.filter(deal_offered_to=deal_id, is_cancelled=False)
         return offers
 
 class UserOfferAPIView(generics.ListAPIView):
